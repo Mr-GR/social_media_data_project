@@ -1,6 +1,6 @@
 import React from 'react'
 
-function AuthLayout() {
+const AuthLayout = () => {
   return (
     <div>AuthLayout</div>
   )
