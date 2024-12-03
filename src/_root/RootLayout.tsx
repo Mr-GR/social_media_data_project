@@ -1,8 +1,8 @@
 import React from 'react'
 
-function RootLayout() {
+const RootLayout = () => {
   return (
-    <div>RootLayout</div>
+    <div>Social Media Project</div>
   )
 }
 
