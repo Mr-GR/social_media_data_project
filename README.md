@@ -1,51 +1,26 @@
-# React + TypeScript + Vite
+# Social Media Project
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This project is for Data Mangement, we have selected the social media project: 
 
-Currently, two official plugins are available:
+3. Social Media Network Analysis and Recommendation System
+Description: Create a database for a social media network that includes users, posts, comments, likes,
+friendships, and messages. Add functionality to search and filter posts and users.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Challenge: Implement a recommendation system for friend suggestions and trending topics using
+relational queries. Store large amounts of data and optimize the database for quick retrieval.
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+### Initial setup
 
-- Configure the top-level `parserOptions` property like this:
+Start with the following:
+`npm install`
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+Then you can run locally:
+`npm run dev`
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+### Trouble-shooting
+For routing issues install: 
+`npm install react-router-dom`
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
-# social_media_data_project
+For css issues:
+`npm install -D tailwindcss-animate`
