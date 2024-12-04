@@ -1,13 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 import defaultTheme from 'tailwindcss/defaultTheme';
 
-export const darkMode = ['class']; // Enable class-based dark mode
+export const darkMode = ['class'];
 export const content = [
   './pages/**/*.{ts,tsx}',
   './components/**/*.{ts,tsx}',
   './app/**/*.{ts,tsx}',
-  './src/**/*.{ts,tsx,js,jsx}',
-  './index.html',
+  './src/**/*.{ts,tsx}',
 ];
 export const theme = {
   container: {
@@ -32,15 +31,16 @@ export const theme = {
       'light-2': '#EFEFEF',
       'light-3': '#7878A3',
       'light-4': '#5C5C7B',
-      'background': 'hsl(var(--background))', // Link --background
-      'foreground': 'hsl(var(--foreground))', // Link --foreground
-      'border': 'hsl(var(--border))',
+    },
+    screens: {
+      'xs': '480px',
+    },
+    width: {
+      '420': '420px',
+      '465': '465px',
     },
     fontFamily: {
       inter: ['Inter', 'sans-serif'],
-    },
-    screens: {
-      xs: '480px',
     },
     keyframes: {
       'accordion-down': {
@@ -58,4 +58,4 @@ export const theme = {
     },
   },
 };
-export const plugins = [import('tailwindcss-animate')];
+export const plugins = [require('tailwindcss-animate')];
