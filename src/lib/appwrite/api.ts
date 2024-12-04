@@ -36,18 +36,20 @@ export async function saveUserToDB(user: {
     name: string;
     imageUrl: string;
     username?: string;
-}) {
+  }) {
     try {
-        const newUser = await databases.createDocument(
-            appwriteConfig.databaseId,
-            appwriteConfig.usersCollectionId,
-            ID.unique(),
-            user,
-        )
+      const newUser = await databases.createDocument(
+        appwriteConfig.databaseId,
+        appwriteConfig.usersCollectionId,
+        ID.unique(),
+        user
+      );
+  
+      return newUser;
     } catch (error) {
-        console.log(error);
+      console.log(error);
     }
-}
+  }
 
 export async function signInAccount(user: {email: string; password: string }) {
     try {
@@ -69,7 +71,7 @@ export async function getCurrentUser() {
         const currentUser = await databases.listDocuments(
             appwriteConfig.databaseId,
             appwriteConfig.usersCollectionId,
-            [Query.equal('accoubtId', currentAccount.$id)]
+            [Query.equal('accountId', currentAccount.$id)]
         )
 
         if (!currentUser) throw Error;
