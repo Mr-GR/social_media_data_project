@@ -58,4 +58,4 @@ export const theme = {
     },
   },
 };
-export const plugins = [import('tailwindcss-animate')];
+export const plugins = [require('tailwindcss-animate')];
