@@ -1,5 +1,5 @@
 export { default as Home } from './Home';
-export { default as Allusers } from './Allusers';
+export { default as Allusers } from './AllUsers';
 export { default as CreatePost } from './CreatePost';
 export { default as EditPost } from './EditPost';
 export { default as Explore } from './Explore';

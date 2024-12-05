@@ -6,7 +6,7 @@ import AuthLayout from './_auth/AuthLayout';
 import RootLayout from './_root/RootLayout';
 import './globals.css';
 import { Toaster } from "@/components/ui/toaster"
-import AllUsers from './_root/pages/Allusers';
+import AllUsers from './_root/pages/AllUsers';
 
 const App = () => {
   return (
