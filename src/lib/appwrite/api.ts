@@ -79,6 +79,7 @@ export async function getCurrentUser() {
 
     } catch (error) {
         console.log(error);
+        return null;
     }
 }
 
@@ -257,4 +258,114 @@ export async function updatePost(post: IUpdatePost) {
     } catch (error) {
       console.log(error);
     }
-  }
+}
+
+export async function likePost(postId: string, likesArray: string[]) {
+    try {
+        const updatedPost = await databases.updateDocument(
+          appwriteConfig.databaseId,
+          appwriteConfig.postsCollectionId,
+          postId,
+          {
+            likes: likesArray,
+          }
+        );
+    
+        if (!updatedPost) throw Error;
+    
+        return updatedPost;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export async function savePost(postId: string, userId: string) {
+    try {
+        const updatedPost = await databases.createDocument(
+            appwriteConfig.databaseId,
+            appwriteConfig.savesCollectionId,
+            ID.unique(),
+            {
+            user: userId,
+            post: postId,
+            }
+        );
+    
+        if (!updatedPost) throw Error;
+  
+      return updatedPost;
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+export async function deletePost(savedRecordId: string) {
+    try {
+        const statusCode = await databases.deleteDocument(
+          appwriteConfig.databaseId,
+          appwriteConfig.savesCollectionId,
+          savedRecordId
+        );
+    
+        if (!statusCode) throw Error;
+    
+        return { status: "Ok" };
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+export async function deleteSavedPost(savedRecordId: string) {
+    try {
+      const statusCode = await databases.deleteDocument(
+        appwriteConfig.databaseId,
+        appwriteConfig.savesCollectionId,
+        savedRecordId
+      );
+  
+      if (!statusCode) throw Error;
+  
+      return { status: "Ok" };
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
+    const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(9)];
+  
+    if (pageParam) {
+      queries.push(Query.cursorAfter(pageParam.toString()));
+    }
+  
+    try {
+      const posts = await databases.listDocuments(
+        appwriteConfig.databaseId,
+        appwriteConfig.postsCollectionId,
+        queries
+      );
+  
+      if (!posts) throw Error;
+  
+      return posts;
+    } catch (error) {
+      console.log(error);
+    }
+}
+
+export async function searchPosts(searchTerm: string) {
+    try {
+      const posts = await databases.listDocuments(
+        appwriteConfig.databaseId,
+        appwriteConfig.postsCollectionId,
+        [Query.search("caption", searchTerm)]
+      );
+  
+      if (!posts) throw Error;
+  
+      return posts;
+    } catch (error) {
+      console.log(error);
+    }
+}
+  
