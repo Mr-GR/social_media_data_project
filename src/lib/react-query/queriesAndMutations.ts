@@ -138,19 +138,17 @@ export const useGetCurrentUser = () => {
 };
 
 export const useGetPosts = () => {
-    return useInfiniteQuery({
-        queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
-        queryFn: getInfinitePosts,
-        getNextPageParam: (lastPage) => {
-        
-          if (lastPage && lastPage.documents.length === 0) return null;
-    
-          const lastId = lastPage.documents[lastPage?.documents.length - 1].$id;
-          
-          return lastId;
-        }
-    });
-}
+  return useInfiniteQuery({
+      queryKey: [QUERY_KEYS.GET_INFINITE_POSTS],
+      queryFn: getInfinitePosts,
+      getNextPageParam: (lastPage) => {
+          if (!lastPage || lastPage.documents.length === 0) return null;
+          return lastPage.documents[lastPage.documents.length - 1].$id;
+      },
+      initialPageParam: undefined, // Set the initial value
+  });
+};
+
 
 export const useSearchPost = (searchTerm: string) => {
     return useQuery({
