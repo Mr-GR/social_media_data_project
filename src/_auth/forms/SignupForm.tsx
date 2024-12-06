@@ -2,7 +2,7 @@ import { z } from "zod"
 import { Button } from "@/components/ui/button"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { useForm } from "react-hook-form"
-import { Form, FormControl, FormDescription, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form"
 import { Input } from "@/components/ui/input"
 import { SignupValidation } from "@/lib/validation"
 import Loader from "@/components/shared/Loader"
@@ -13,7 +13,7 @@ import { useUserContext } from "@/context/AuthContext"
 
 const SignupForm = () => {
     const { toast } = useToast();
-    const {checkAuthUser, isLoading: isUserloading } = useUserContext();
+    const {checkAuthUser } = useUserContext();
     const navigate = useNavigate();
 
     const form = useForm<z.infer<typeof SignupValidation>>({
@@ -27,7 +27,7 @@ const SignupForm = () => {
     })
 
     const { mutateAsync: createUserAccount, isPending: isCreatingAccount} = useCreateUserAccount();
-    const { mutateAsync: signInAccount, isPending: isSigningIn} = useSignInAccount();
+    const { mutateAsync: signInAccount} = useSignInAccount();
 
     const handleSignup = async (user: z.infer<typeof SignupValidation>) => {
         try {

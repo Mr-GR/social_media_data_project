@@ -331,27 +331,64 @@ export async function deleteSavedPost(savedRecordId: string) {
     }
 }
 
-export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
-    const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(9)];
+// export async function getInfinitePosts({ pageParam }: { pageParam: number }) {
+//     const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(9)];
   
-    if (pageParam) {
-      queries.push(Query.cursorAfter(pageParam.toString()));
-    }
+//     if (pageParam) {
+//       queries.push(Query.cursorAfter(pageParam.toString()));
+//     }
   
-    try {
+//     try {
+//       const posts = await databases.listDocuments(
+//         appwriteConfig.databaseId,
+//         appwriteConfig.postsCollectionId,
+//         queries
+//       );
+  
+//       if (!posts) throw Error;
+  
+//       return posts;
+//     } catch (error) {
+//       console.log(error);
+//     }
+// }
+
+// export async function getInfinitePosts({ pageParam }: { pageParam?: string }) {
+//   const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(9)];
+//   if (pageParam) queries.push(Query.cursorAfter(pageParam));
+
+//   try {
+//       const posts = await databases.listDocuments(
+//           appwriteConfig.databaseId,
+//           appwriteConfig.postsCollectionId,
+//           queries
+//       );
+
+//       return posts || { documents: [], total: 0 }; // Include `total`
+//   } catch (error) {
+//       console.error("Error fetching posts:", error);
+//       return { documents: [], total: 0 }; // Match `DocumentList` structure
+//   }
+// }
+
+export async function getInfinitePosts({ pageParam }: { pageParam?: string }) {
+  const queries: any[] = [Query.orderDesc("$updatedAt"), Query.limit(9)];
+  if (pageParam) queries.push(Query.cursorAfter(pageParam));
+
+  try {
       const posts = await databases.listDocuments(
-        appwriteConfig.databaseId,
-        appwriteConfig.postsCollectionId,
-        queries
+          appwriteConfig.databaseId,
+          appwriteConfig.postsCollectionId,
+          queries
       );
-  
-      if (!posts) throw Error;
-  
-      return posts;
-    } catch (error) {
-      console.log(error);
-    }
+
+      return posts || { documents: [], total: 0 }; // Match structure
+  } catch (error) {
+      console.error("Error fetching posts:", error);
+      return { documents: [], total: 0 }; // Provide fallback
+  }
 }
+
 
 export async function searchPosts(searchTerm: string) {
     try {
