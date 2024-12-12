@@ -69,9 +69,9 @@ const SignupForm = () => {
                 <h1 className="h3-bold md:h2-bold">Serotonin</h1>
                 <img src="/assets/images/serotoninlogo.png"/>
 
-                <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">Create a new account</h2>
+                <h2 className="h3-bold md:h2-bold pt-5 pl-4">Create a new account</h2>
 
-                <p className="text-light-3 small-medium md:base-regular mt-2">
+                <p className="text-light-3 small-medium md:base-regular mt-2 pl-4">
                     To use Serotonin enter your account 
                 </p>
             
