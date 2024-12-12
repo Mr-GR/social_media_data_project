@@ -55,15 +55,15 @@ const SigninForm = () => {
         <h1 className="h3-bold md:h2-bold">Serotonin</h1>
         <img src="/assets/images/serotoninlogo.png" alt="logo" />
 
-        <h2 className="h3-bold md:h2-bold pt-5 sm:pt-12">
+        <h2 className="h3-bold md:h2-bold pt-5 pl-6">
           Log in to your account
         </h2>
-        <p className="text-light-3 small-medium md:base-regular mt-2">
+        <p className="text-light-3 small-medium md:base-regular mt-2 pl-4">
           Welcome back! Please enter your details.
         </p>
         <form
           onSubmit={form.handleSubmit(handleSignin)}
-          className="flex flex-col gap-5 w-full mt-4">
+          className="flex flex-col gap-5 w-full mt-5 pr-4 pl-4">
           <FormField
             control={form.control}
             name="email"
